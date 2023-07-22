@@ -1,6 +1,8 @@
+//Muhammad Suhaib Usman
+//Mehdi Anthani
+
 import 'dart:io';
-//candidates ki list add krni he
-// pooling agent ki bhi
+
 int? voterCNIC;
 bool isVoter =true;
 List totalVoters =[];
@@ -182,7 +184,9 @@ addPA(){
 var poolingIdInput =stdin.readLineSync();
    print("Enter Your Password: ");
    var poolingPassInput =stdin.readLineSync();
-  poolingAgent.add({'username': poolingIdInput, 'password': poolingPassInput});
+   print("Please Enter a Party for $poolingIdInput ");
+  var newPartyValue = stdin.readLineSync();
+  poolingAgent.add({'username': poolingIdInput, 'password': poolingPassInput ,'party':newPartyValue});
   print("Username: $poolingIdInput and Password: $poolingPassInput added successfully");
     print("==================================================");
   }
@@ -202,9 +206,12 @@ updatePA(){
   var newUserNameValue = stdin.readLineSync();
    print("Please Enter a password for $newUserNameValue: ");
   var newPasswordValue = stdin.readLineSync();
+  print("Please Enter a Party for $newUserNameValue: ");
+  var newPartyValue = stdin.readLineSync();
   poolingAgent[inputPool]["username"]=newUserNameValue;
   poolingAgent[inputPool]["password"]=newPasswordValue;
-print("Username: $newUserNameValue and Password: $newPasswordValue Updated Successfully on the index number : $inputPool");
+  poolingAgent[inputPool]["party"]=newPartyValue;
+print("Username: $newUserNameValue and Password: $newPasswordValue Updated Successfully on the index number : $inputPool and Party is $newPartyValue");
     print("==================================================");
 }
 deletePA(){
@@ -319,7 +326,7 @@ while (isVoter ==true) {
     print("Press 3 to Vote PMLN.");
       var voterInput = stdin.readLineSync();
     if(voterInput == "1"){
-      ptiVoter.add(voterCNIC); //cnic add krwanaa hee
+      ptiVoter.add(voterCNIC);
       print("You vote has been casted for PTI.");
       print("=================================");
       isVoter ==false;
@@ -354,22 +361,11 @@ while (isVoter ==true) {
     }
 }
 
-  // if(voterCNIC == "1"){
-  //   print("Already vote casted.");
-  //     print("==================");
-  // }
-  // else{
-    // print("Print 1 to Vote PTI.");
-    // print("Print 2 to Vote PPP.");
-    // print("Print 3 to Vote PMLN.");
 
-  
-  // }
-  
 }
 
 partyVotes(){
-  print("Apke party k total Votes.");
+  print("Your Party Total Votes: ");
 if (totalVoters ==ptiVoter) {
   print(ptiVoter.length);
 }else if(totalVoters ==pppVoter) {
@@ -382,7 +378,7 @@ if (totalVoters ==ptiVoter) {
 }
 
 totalVotes(){
-  print("Total votes itne hai.");
+  print("Total votes of all party.");
 
 int list1Length = ptiVoter.length;
   int list2Length = pppVoter.length;
@@ -422,123 +418,3 @@ int findMaxListLength(List<List> lists) {
 
   return maxLength;
 }
-// addVotingList() {
-//   print("Please Enter CNIC Number");
-//   var cnicInput = stdin.readLineSync();
-
-//   cnicNumb.add(cnicInput);
-//   allcandidate();
-// }
-
-// adminpart() {
-//   stdout.write("Enter Username: ");
-//   var inputUser = stdin.readLineSync();
-//   stdout.write("Enter Password: ");
-//   var inputPass = stdin.readLineSync();
-//   if (inputUser == "admin" && inputPass == "admin") {
-//     print("============Login Successfull============");
-//     print("=========================================");
-//     print("Total Votes of PTI Candidates :- ${ptiVoter.length}");
-//     print("Total Votes of PMLN Candidates :- ${pmlnVoter.length}");
-//     print("Total Votes of PPP Candidates :- ${pppVoter.length}");
-//     print("Total Votes of MQM Candidates :- ${mqmVoter.length}");
-//     print(
-//         "Total Votes of INDEPENDENT Candidates :- ${independentVoter.length}");
-//     print("=========================================");
-//     print("This Party get highest votes");
-//   } else {
-//     print("email and password not matched");
-//   }
-// }
-
-// allcandidate() {
-//   print("Select you Candidates");
-//   print("Press 1 for PTI");
-//   print("Press 2 for PMLN");
-//   print("Press 3 for PPP");
-//   print("Press 4 for MQM");
-//   print("Press 5 for INDEPENDENT");
-
-//   int inputCommand = int.parse(stdin.readLineSync()!);
-//   if (inputCommand == 1) {
-//     ptiVotingList();
-//   } else if (inputCommand == 2) {
-//     pmlnVotingList();
-//   } else if (inputCommand == 3) {
-//     pppVotingList();
-//   } else if (inputCommand == 4) {
-//     mqmVotingList();
-//   } else if (inputCommand == 5) {
-//     independentVotingList();
-//   }
-// }
-
-// ptiVotingList() {
-//   print("YOU ARE CHOOSING PTI");
-//   print("if u want to change party then type yes otherwise type no");
-//   var partyChangeOption = stdin.readLineSync();
-//   if (partyChangeOption == "yes") {
-//     allcandidate();
-//   } else {
-//     print("Your Vote is Counted For PTI");
-//     ptiVoter.add(1);
-//   }
-// }
-
-// pmlnVotingList() {
-//   print("YOU ARE CHOOSING PMLN");
-//   print("if u want to change party then type yes otherwise type no");
-//   var partyChangeOption = stdin.readLineSync();
-//   if (partyChangeOption == "yes") {
-//     allcandidate();
-//   } else {
-//     print("Your Vote is Counted For PTI");
-//     pmlnVoter.add(1);
-//   }
-// }
-
-// pppVotingList() {
-//   print("YOU ARE CHOOSING PPP");
-//   print("if u want to change party then type yes otherwise type no");
-//   var partyChangeOption = stdin.readLineSync();
-//   if (partyChangeOption == "yes") {
-//     allcandidate();
-//   } else {
-//     print("Your Vote is Counted For PTI");
-//     pppVoter.add(1);
-//   }
-// }
-
-// mqmVotingList() {
-//   print("YOU ARE CHOOSING MQM");
-//   print("if u want to change party then type yes otherwise type no");
-//   var partyChangeOption = stdin.readLineSync();
-//   if (partyChangeOption == "yes") {
-//     allcandidate();
-//   } else {
-//     print("Your Vote is Counted For PTI");
-//     mqmVoter.add(1);
-//   }
-// }
-
-// independentVotingList() {
-//   print("YOU ARE CHOOSING INDEPENDENTVOTINGLIST");
-//   print("if u want to change party then type yes otherwise type no");
-//   var partyChangeOption = stdin.readLineSync();
-//   if (partyChangeOption == "yes") {
-//     allcandidate();
-//   } else {
-//     print("Your Vote is Counted For PTI");
-//     mqmVoter.add(1);
-//   }
-// }
-
-// partyChangeOption() {
-// //   var partyChangeOption =stdin.readLineSync();
-// //   if (partyChangeOption == "yes") {
-// //     allcandidate();
-// //   }else if(partyChangeOption == "no"){
-
-// //   }
-// }
-// voterDetails() {}
